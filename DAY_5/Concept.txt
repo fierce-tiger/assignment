@@ -1,0 +1,69 @@
+question1
+Q: A person’s telephone number 
+A: string
+Q: A person’s height
+A: float
+Q: A person’s age
+A: int
+Q: A person’s gender (Male, Female, Prefer Not To Answer)
+A: string
+Q: A person’s salary
+A: int(minimum denomination is a cent )
+Q: A book’s ISBN
+A: string
+Q: A book’s price
+A: float
+Q: A book’s shipping weight
+A: decimal
+Q: A country’s population
+A: int
+Q: The number of stars in the universe
+A: BigInteger
+Q: The number of employees in each of the small or medium businesses in the United Kingdom (up to about 50,000 employees per business)
+A: a class (have many attributes)
+
+question2
+There are differences between value type and reference type:
+1. value type stores in stack whereas reference type stores in the heap;
+2. if you revise a value from a reference, it will influence another reference type point to here, but value type won't be influence by other value type.
+That is reference is pass by reference, and value is pass by value
+3.  value type includes primitive types, such as int/float/vool/char and struct type. reference types includes class/array.
+
+question3
+when divide an int variable by 0. IDE will throw a "DivideByZeroException". Because zero cannot be divided. it isn't a error, it's a exception. 
+So use a try-catch statemant can handle this exception.
+
+question4
+double is different compare to int. When divide a double variable by 0, the result will be "Infinity".
+
+question5
+When set it ro a value beyond its range, the IDE will throw a "OverflowException". Samely, use a try-catch statement can handle this exception.
+And need to notice that the range of int is -2^31 to 2^31 - 1.
+
+question6
+assume y = 1 at this example
+x = y++; after this statemant, x = 1, y = 2.
+x = ++y; after this statement, x = 2, y = 2.
+y++ means that implement x = y first, then y = y + 1;
+++y means that implement y = y + 1 first, then x = y.
+
+question7
+take a double for-loop as an example
+public int Sum (int n, int m){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(statemant){
+                return value;/break;/continue;
+            }
+        }
+    }
+}
+if the keyword is return, then the Sum method will stop calculate and this method return this value directly.
+if the keyword is break, it will break the inner for-loop, the index of j will back to 0, to run the outer for-loop to let i increase by 1.
+if the keyword is continue, it will step over this inner for-loop once, do not tun the code after it. and let j increase by 1.
+
+question8
+in a for statemant
+three parts are : initial state/ final state/ how this state change
+example(int i = 0; i < n; i++)
+initial state is i = 0, in this for-loop, i will increase by 1, till i equals to n.

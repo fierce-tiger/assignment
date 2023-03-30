@@ -1,0 +1,41 @@
+public class Solution {
+    public IList<IList<int>> ThreeSum(int[] nums) {
+        IList<IList<int>> res = new List<IList<int>>();
+        Array.Sort(nums);
+        int n = nums.Length;
+        // keep nums[i] as a certain value, check the sum of other two numbers
+        for(int i = 0; i < n - 2; i++){
+            // at this situation，these three numbers are the same, check next i
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            // know that these values are first < second < third, so third number comes from right to left 
+            int thirdNum = n - 1;
+            int target = -nums[i];
+            // check the sum of second and third number, is a "two sum"
+            for(int j = i + 1; j < n; j++){
+                // at this situation，these three numbers are the same, check next j
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                    continue;
+                }
+                // second number is always to the left of third number.
+                while (j < thirdNum && nums[j] + nums[thirdNum] > target) {
+                    --thirdNum;
+                }
+                // second idnex meets the third, just break j for-loop, check next first number 
+                if (j == thirdNum) {
+                    break;
+                }
+                // find the answer, take it to the list
+                if (nums[j] + nums[thirdNum] == target) {
+                    List<int> list = new List<int>();
+                    list.Add(nums[i]);
+                    list.Add(nums[j]);
+                    list.Add(nums[thirdNum]);
+                    res.Add(list);
+                }
+            }
+        }
+        return res;
+    }
+}

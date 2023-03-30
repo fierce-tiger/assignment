@@ -1,0 +1,80 @@
+1. they are private, protected, public, internal, internal protected, private protected
+public: this keyword is most permissive access level. There are no restriciton on accessing public members.
+protect: A protect member is accessible within its class and by derived class instances.
+private: private access is the least permissive access level. Private members are accessible only within the body of the class ot the struct in which they are declared
+internal: internal types or members are accessible only within files in the same assembly.
+protected internal: A protected internal member is accessible from the current assembly or from types that are derived from the containing class.
+private protected: A private protected member is accessible by types derived from the containing class, but only within its containing assembly. 
+
+2.
+first difference: 
+static: Classes, constructors, methods, variables, properties, event and operators can be static.
+Only the class level fields can be readonly and const.
+Second difference:
+Static members can only be accessed within the static methods. The non-static methods cannot access static members.
+Readonly fields can be initialized at declaration or in the constructor.
+The constant fields must be initialized at the time of declaration.
+Defination：
+Static：Use the modifier to declare a static member, which belongs to the type itself rather than to a specific object. 
+const:use the const keyword to declare a constant field or a constant local.
+Readonly: indicates that assignment to the field can only occur as part of the declaration or in a constructor in the same class.
+ A readonly field can be assigned and reassigned multiple times within the field declaration and constructor.
+
+
+3. constructor is a special method, which name is same with the class. It can create and initialize an object and has no return. constructor can not be derived.
+constructor can be overload. A class may have many constructor. IDE will create a default constructor if we don't create one.
+
+4. The partial keyword in C# is used to allow the definition of a single class or struct to be split across multiple files. 
+advantages: 1. Separation of concerns; 2.Collaboration; 3.Generated code.
+
+5.The tuples feature provides concise syntax to group multiple data elements in a lightweight data structure.One of the most common use cases of tuples is as a method return type.
+Tuple types support the and operators. 
+
+6. record: use the keyword to define a reference type that provides built-in functionality for encapsulating data.
+these datas can be initialized at constructor, after that it is immutable.
+
+7. overload: a constructor or method have the same name for reusability, different parameters allows different functionality.
+1. different number of parameters
+2. different order of parameters
+3. different data types.
+can change the return type of the function but it must use one of the three above with it.
+override: The override modifier is required to extend or modify the abstract or virtual implementation of an inherited method, property, indexer, or event.
+An override method provides a new implementation of the method inherited from a base class. 
+
+8. A "field" is a variable within a class that stores and holds data. A "property" is a member within a class that provides an indirect way to access and modify a field.
+
+9.  example:  public int Sum(int a, int b = 0){
+    return a + b;
+}
+Here b is optional. default value is 0.
+I can call this method by Sum(10) or Sum(10,0);
+Besides this, I can use overload to make this parameters optional.
+
+10. interface gives a list of methods which must be implemented by derived class.
+difference:
+Interface by default has all members as public
+Interface cannot have constructor
+Interface cannot have variables
+cannot make instance of an interface
+interface can support multiple inheritance but abstract class cannot.
+
+11. The accessibility level of members in an interface is public. 
+
+12. True.
+13. True.
+14. True.
+15. False.
+16. True.
+17. True.
+18. True.
+19. False.
+20. False.
+21. True.
+22. False.
+23. True.
+The term "managed resource" in .NET refers to an object that is managed by the .NET runtime and can be automatically cleaned up by the garbage collector when it is no longer needed. 
+The term "unmanaged resource" in .NET refers to an object that is not managed by the .NET runtime and must be manually cleaned up by the programmer.
+
+24.The purpose of the Garbage Collector in .NET is to automatically manage the memory used by .NET applications, freeing up memory that is no longer being used by objects. 
+The garbage collector periodically checks the memory used by the application, identifying objects that are no longer being referenced by the application and cleaning them up. 
+This helps to prevent memory leaks and other issues that can arise from manually managing memory in large applications.
