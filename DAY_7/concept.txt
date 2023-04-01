@@ -1,0 +1,33 @@
+1. Generics let you tailor a method, class, structure, or interface to the precise data type it acts upon.
+When you use Generics, it allows you to write only one method other than many repeated method.
+For example, instead of using the Hashtable class, which allows keys and values to be of any type, you can use the Dictionary<TKey,TValue> generic class and specify the types allowed for the key and the value.
+
+2.We can use a list to create a list of strings.
+List<string> strList = new List<string>;
+// Add element into the list
+for(int i = 0; i < n; i++){
+    strList.Add(i);
+}
+// traverse the whole list by foreach
+foreach(string str in strList){
+    // show these strings in the Console
+    Console.WriteLine(str);
+}
+
+3.The Dictionary<Tkey,TValue> has two generic type parameters.
+Tkey represents the type of the keys in the Dictionary,
+and TValue represents the type of the value in the Dictionary.
+Dictionary<int, int> is the Dictionary has int type key and value.
+
+4. False.
+
+5. Add(); to a list.
+
+6. (1) Remove(value) method; removes the first occurrence of a specified item from the list.
+   (2) RemoveAt(index) method; removes the item at the specified index from the list. 
+
+7. Indicate that a class has a generic type parameter by using angle brackets (<>) after the class name, followed by the generic type parameter or parameters, separated by commas.
+
+8. False.
+9. True.
+10. True.

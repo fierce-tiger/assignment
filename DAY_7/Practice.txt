@@ -1,0 +1,183 @@
+1. 
+public class MyStack<T>
+{
+    private List<T>  list = new List<T> ();
+    public int Count()
+    {
+        return list.Count;
+    }
+
+    public T Pop()
+    {
+        if(list.Count == 0)
+        {
+            throw new Exception();
+        }
+        T value = list[list.Count - 1];
+        list.RemoveAt(list.Count - 1);
+        return value;
+    }
+
+    public void Push(T value)
+    {
+        list.Add (value);
+    }
+}
+
+2.
+public class MyList<T>
+{
+    private List<T> list = new List<T>();
+    private MyStack<T> stack = new MyStack<T>();
+
+    public void Add(T element)
+    {
+        list.Add(element);
+    }
+
+    public T Remove(int index)
+    {
+        if (index > list.Count - 1 || index < 0)
+        {
+            throw new Exception();
+        }
+        if (list.Count == 0)
+        {
+            throw new Exception("the length of list is 0, cannot remove any element here");
+        }
+        T value = list[index];
+        list.RemoveAt(index);
+        return value;
+    }
+
+    public bool Contains(T element)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            T value = list[i];
+            // if find the same value, return true directly
+            bool Equal = EqualityComparer<T>.Default.Equals(element, value);
+            if (Equal)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void Clear()
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            list.RemoveAt(i);
+        }
+    }
+
+    public void InsertAt(T element, int index)
+    {
+        if (index > list.Count - 1 || index < 0)
+        {
+            throw new Exception();
+        }
+        // move elements from list to a stack
+        for (int i = list.Count - 1; i >= index; i--)
+        {
+            T value = list[i];
+            stack.Push(value);
+            list.RemoveAt(i);
+        }
+        // Insert
+        list.Add(element);
+        // move elements from stack to the original list
+        for (int i = list.Count - 1; i >= index; i--)
+        {
+            T value = stack.Pop();
+            list.Add(value);
+        }
+    }
+
+    public void DeleteAt(int index)
+    {
+        if(index > list.Count - 1 || index < 0)
+        {
+            throw new Exception();
+        }
+        list.RemoveAt(index);
+    }
+
+    public T Find(int index)
+    {
+        if (index > list.Count - 1 || index < 0)
+        {
+            throw new Exception();
+        }
+        T value = list[index];
+        return value;
+    }
+}
+
+3.
+public interface IEntity
+{
+    int Id { get; set; }
+}
+public interface IRepository<T> where T : class, IEntity
+{
+    void Add(T item);
+    void Remove(T item);
+    void Save();
+    IEnumerable<T> GetAll();
+    T GetById(int id);
+}
+public class GenericRepository<T> : IRepository<T> where T : class, IEntity
+{
+    private List<T> _items = new List<T>();
+    private int _nextId = 1;
+
+    public void Add(T item)
+    {
+        if (item == null)
+            throw new ArgumentNullException(nameof(item));
+
+        if (item.Id == 0)
+        {
+            item.Id = _nextId++;
+            _items.Add(item);
+        }
+        else
+        {
+            throw new ArgumentException("The item already exists in the repository.");
+        }
+    }
+
+    public void Remove(T item)
+    {
+        if (item == null)
+            throw new ArgumentNullException(nameof(item));
+
+        if (_items.Remove(item))
+        {
+            _nextId--;
+        }
+        else
+        {
+            throw new ArgumentException("The item does not exist in the repository.");
+        }
+    }
+
+    public void Save()
+    {
+        // save the value to the database
+        Console.WriteLine("Saved changes.");
+    }
+
+    public IEnumerable<T> GetAll()
+    {
+        return _items.ToList();
+    }
+
+    public T GetById(int id)
+    {
+        return _items.FirstOrDefault(x => x.Id == id) ?? throw new Exception();
+    }
+}
